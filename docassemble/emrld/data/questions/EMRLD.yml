@@ -1360,6 +1360,7 @@ attachments:
       "costs_text": ${ costs_text }
       "costs_claim": ${ costs_claim }
       "total_claim": ${ total_claim }
+      "witness.are_there_any": ${ witness.are_there_any }
       "witness.name": ${ witness }
       "today_date": ${ today() }
       "signature": ${ signature }
