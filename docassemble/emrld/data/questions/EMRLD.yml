@@ -497,6 +497,7 @@ code:  |
   claim_amount_ok
   # WITNESSES
   witness.gather()
+  evidence.gather()
   signature
 ---
 code: |
