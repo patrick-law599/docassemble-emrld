@@ -1284,11 +1284,13 @@ subquestion: |
   All done? 
 noyes: evidence.there_is_another
 ---
-question: Here is your document.
+question: Here are the instructions for filing this application. Download these and then go to the next screen.
 attachment:
   - name: Memo
     filename: instructions.md 
     content file: instructions.md
+buttons:
+  - Continue to the next step: continue
 mandatory: True
 ---
 mandatory: true
