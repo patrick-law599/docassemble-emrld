@@ -50,7 +50,7 @@ modules:
 objects:
   - tenant: DAList.using(object_type=Individual, complete_attribute="complete",there_are_any=True)
   - landlord: DAList.using(object_type=Individual, complete_attribute="complete", there_are_any=True)
-  - witness: DAList.using(object_type=Individual)
+  - witness: DAList.using(object_type=Individual, there_are_any=True)
   - evidence: DAList.using(object_type=Thing, there_are_any=True)
 ---
 sections:
@@ -1360,10 +1360,10 @@ attachments:
       "costs_text": ${ costs_text }
       "costs_claim": ${ costs_claim }
       "total_claim": ${ total_claim }
-      "witness.are_there_any": ${ witness.are_there_any }
       "witness.name": ${ witness }
       "today_date": ${ today() }
       "signature": ${ signature }
 section: conclusion
 ---
+
 
