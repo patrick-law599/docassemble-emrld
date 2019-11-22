@@ -51,6 +51,7 @@ objects:
   - tenant: DAList.using(object_type=Individual, complete_attribute="complete",there_are_any=True)
   - landlord: DAList.using(object_type=Individual, complete_attribute="complete", there_are_any=True)
   - witness: DAList.using(object_type=Individual)
+  - evidence: DAList.using(object_type=Thing, there_are_any=True)
 ---
 sections:
   - intro: Introduction
@@ -548,6 +549,13 @@ columns:
 edit:
   - name.first
   - name.last
+---
+table: evidence.table
+rows: evidence
+columns: 
+  - Name: row_item
+edit:
+  - name.text
 ---
 ##
 ## Welcome screen
@@ -1244,6 +1252,43 @@ subquestion: |
   Today's date is ${ today() }.
 signature: signature
 section: pleasesign
+---
+question: |
+  Evidence is very important.  You must print out and add any evidence you plan to use to support your case.  It has to be labelled and added to the whole application package.  If you have emails, receipts, contracts, text messages that you will be printing and adding make a list of them now.
+yesno: continue
+---
+question: |
+  Try to describe each piece of evidence.  Here are good examples of descriptions:
+  
+  "receipt for paint"
+  
+  "lease agreement"
+  
+  "email from landlord January 2"
+  
+  Tell us about the ${ ordinal(i) } piece of evidence. 
+ 
+  
+fields:
+  - Evidence: evidence[i].name.text
+  - Item: evidence[i].name.text2
+    default: ${alpha(i)}
+---
+question: | 
+  Here is the evidence you have listed so far. 
+   ${evidence.table}
+     ${evidence.add_action() }
+
+subquestion: |
+  All done? 
+noyes: evidence.there_is_another
+---
+question: Here is your document.
+attachment:
+  - name: Memo
+    filename: reminder.md 
+    content file: reminder.md
+mandatory: True
 ---
 mandatory: true
 question: |
