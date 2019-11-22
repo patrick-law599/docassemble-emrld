@@ -403,6 +403,7 @@ code: |
   abatement_text_hold=" not applicable "
   other_premises_type=" "
   other_term=" "
+  vacated_date=" "
   abatement_attach=" "
   damages_attach=" "
   deposit_claim=" "
@@ -410,7 +411,6 @@ code: |
   paid_back_none=" "
   termination_attach=" "
   tenancy_start=" "
-  vacated_date=" "
   exhibit_order=" "
 ---
 mandatory: true
@@ -419,7 +419,7 @@ code:  |
   beginning
   rta_applies
   terminated_yes
-  residing_flag=terminated_yes
+  residing_flag=residing
   remedy
   if remedy['terminating']:
     termination=True
@@ -438,11 +438,7 @@ code:  |
   tenancy_type
   tenancy_agreement
   residing
-  if residing == True:
-    vacated_date
-    vacated_date_hold = vacated_date
-  else:
-    vacated_date_hold = "   "
+  vacated_date
   previous_order
   # SECTION B
   if remedy['terminating']:
@@ -887,7 +883,6 @@ fields:
 help: |
     Fixed term: You rent for a set length of time, like 6 months, or 1 year.
     Month to month: You rent for one month at a time, or the rental is open (without an end date).
-    Other: You rent for any other period of time, like week to week or daily.
 section: leasetype
 ---
 question: |
@@ -1288,7 +1283,7 @@ mandatory: True
 ---
 mandatory: true
 question: |
-  Your document is ready.
+  Your document is ready. Your vacated date is: ${ vacated_date }
 subquestion: |
   Thank you for using this interview. 
   Please note: you can apply to the RTDRS within 2 years from the date your claim is discovered.
@@ -1337,7 +1332,7 @@ attachments:
       "tenancy_agreement": ${ tenancy_agreement }
       "tenancy_start": ${ tenancy_start }
       "residing": ${ residing_flag }
-      "vacated_date": ${ vacated_date_hold }
+      "vacated_date": ${ vacated_date }
       "previous_order": ${ previous_order }
       "termination_date": ${ termination_date_hold }
       "termination_text": ${ termination_text_hold }
