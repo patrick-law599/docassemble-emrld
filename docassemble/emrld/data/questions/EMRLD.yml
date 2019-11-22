@@ -871,7 +871,7 @@ question: |
   % elif terminated_yes == False:
     is  
   % endif  
-  your tenancy term? (Fixed, Monthly, or Other)
+  your tenancy term?
 subquestion: |
   The rental term is the length of time you agreed to rent the property.
 fields:
@@ -887,6 +887,7 @@ fields:
 help: |
     Fixed term: You rent for a set length of time, like 6 months, or 1 year.
     Month to month: You rent for one month at a time, or the rental is open (without an end date).
+    Other: You rent for any other period of time, like week to week or daily.
 section: leasetype
 ---
 question: |
@@ -1250,13 +1251,14 @@ question: |
 yesno: continue
 ---
 question: |
-  Try to describe each piece of evidence.  Here are good examples of descriptions:
+  Try to describe each piece of evidence.  
+subquestion: |
+  Here are some good examples of descriptions:
   
-  "receipt for paint"
-  
-  "lease agreement"
-  
-  "email from landlord January 2"
+  * receipt for stuff used to paint kitchen
+  * lease agreement
+  * pictures of damage to the carpet
+  * email from landlord on January 2
   
   Tell us about the ${ ordinal(i) } piece of evidence. 
  
