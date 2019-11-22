@@ -804,27 +804,18 @@ question: |
 #or rented
 fields: 
   - Type of Premises: rental_premises_type
-    datatype: checkboxes
     choices:
       - House: house
-        help: |
-          You rent the entire house
-      - Main floor: main_floor
-        help: |
-          You rent the upper or main floor of a house. The basement might be rented to someone else.
+      - Main floor of a house: main_floor
       - Basement suite: basement
-        help: |
-          You rent the whole basement or a basement suite. The living space might have a separate door and it might have a living room, a kitchen and a bathroom.
       - Room: room
-        help: |
-          You rent a room (or rooms) in a house. The kitchen, living room, or bathroom might be shared with other renters.
       - Apartment: apartment
       - Townhouse: townhouse
       - Other: other
-    none of the above: False
-  - Describe Other: other_premises_type
-    js show if:
-      val("rental_premises_type['other']")
+  - Other type of premises: other_premises_type
+    show if:
+      variable: rental_premises_type
+      is: other
 section: rentaltype
 ---
 question: |
@@ -884,11 +875,12 @@ question: |
 subquestion: |
   The rental term is the length of time you agreed to rent the property.
 fields:
-  - I rent: tenancy_type
+  - Type of lease: tenancy_type
     choices:
-      - on a fixed term: fixed
-      - from month to month: monthly
-  - Other: other_term
+      - Fixed term: fixed
+      - Month to month: monthly
+      - Other: other_term
+  - Other tenancy term: other_term_type
     show if:
       variable: tenancy_type
       is: other_term
@@ -898,39 +890,38 @@ help: |
 section: leasetype
 ---
 question: |
-  It is helpful if your Tenancy Agreement is in writing and you can provide a copy.
+  Do you have a tenancy agreement or a lease?
 fields:
-  - "Do you have a copy?": tenancy_agreement
-    datatype: yesnoradio
-  - "When did the tenancy start?": tenancy_start
-    datatype: date
-    help: |
-      The day you moved in, got keys, or the date you agreed to start paying rent.
-    js show if: |
-      val('tenancy_agreement') == false
-  - "Marked as 'ITEM: '": exhibit
-    help: |
-      You need to label each document you attach as evidence. The documents must be labeled "ITEM A", "ITEM B", "ITEM C", etc on this form *and* the document itself.
-    js show if: |
-      val('tenancy_agreement') == true
+  - Can you attach a copy of your Tenancy Agreement?: tenancy_agreement
+    choices:
+      - Yes, I'm attaching a copy: attached
+      - No, I never got an agreement or I have lost it: not_attached
+  - My tenancy started on: tenancy_start
+    show if:
+      variable: tenancy_agreement
+      is: not_attached
 section: agreement
 ---
 question: |
-  Are you still living in this rental?
-yesno: residing
+  Have you moved out yet?
+fields:
+  - Are you still living there?: residing
+    choices:
+      - Yes, I'm still living there: still_residing
+      - No, I moved out: not_residing
+  - I moved out on: vacated_date
+    datatype: date
+    show if:
+      variable: residing
+      is: not_residing
 section: residentstatus
 ---
 question: |
-  When did you move out?
-fields:
-  - Date moved out: vacated_date
-    datatype: date
----
-question: |
-  Are there previous Orders or Judgments regarding this tenancy?
-subquestion: |
-  You'll need to attach these documents, if you have them.
-yesno: previous_order
+  Have you ever gone to court or the RTDRS about this rental before?
+field: previous_order
+choices:
+  - Yes, I have: have_order
+  - No, I have not: no_order
 section: ordersjudgments
 ---
 ## SECTION B
