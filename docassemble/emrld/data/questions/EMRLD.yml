@@ -419,7 +419,7 @@ code:  |
   beginning
   rta_applies
   terminated_yes
-  residing=terminated_yes
+  residing_flag=terminated_yes
   remedy
   if remedy['terminating']:
     termination=True
@@ -1336,7 +1336,7 @@ attachments:
       "tenancy_type": ${ tenancy_type }
       "tenancy_agreement": ${ tenancy_agreement }
       "tenancy_start": ${ tenancy_start }
-      "residing": ${ residing }
+      "residing": ${ residing_flag }
       "vacated_date": ${ vacated_date_hold }
       "previous_order": ${ previous_order }
       "termination_date": ${ termination_date_hold }
