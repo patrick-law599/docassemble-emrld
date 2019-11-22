@@ -418,7 +418,10 @@ code:  |
   beginning
   rta_applies
   terminated_yes
+  residing=terminated_yes
   remedy
+  if remedy('terminating'):
+    termination=True
   tenant.gather()
   landlord.gather()
   rental_address
@@ -434,7 +437,7 @@ code:  |
   tenancy_type
   tenancy_agreement
   residing
-  if residing == False:
+  if residing == True:
     vacated_date
     vacated_date_hold = vacated_date
   else:
