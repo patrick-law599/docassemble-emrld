@@ -421,7 +421,7 @@ code:  |
   terminated_yes
   residing=terminated_yes
   remedy
-  if remedy('terminating'):
+  if remedy['terminating']:
     termination=True
   tenant.gather()
   landlord.gather()
@@ -1272,12 +1272,12 @@ question: |
 fields:
   - Evidence: evidence[i].name.text
   - Item: evidence[i].name.text2
-    default: ${alpha(i)}
+    default: ${ alpha(i) }
 ---
 question: | 
   Here is the evidence you have listed so far. 
-   ${evidence.table}
-     ${evidence.add_action() }
+   ${ evidence.table }
+     ${ evidence.add_action() }
 
 subquestion: |
   All done? 
@@ -1286,8 +1286,8 @@ noyes: evidence.there_is_another
 question: Here is your document.
 attachment:
   - name: Memo
-    filename: reminder.md 
-    content file: reminder.md
+    filename: instructions.md 
+    content file: instructions.md
 mandatory: True
 ---
 mandatory: true
